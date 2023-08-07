@@ -9,12 +9,32 @@ namespace StudocNetAPi_1.AutoMapper
         public AutoMapper() 
         {
             MapPokemon();
+            MapOwner();
+            MapCategory();
+            MapReview();
+        }
+
+        private void MapReview()
+        {
+            CreateMap<Review, ReviewResponse>().ReverseMap();
+        }
+
+        private void MapCategory()
+        {
+            CreateMap<Category, CategoryResponse>().ReverseMap();
         }
 
         private void MapPokemon()
         {
-            CreateMap<Pokemon, PokemonResponse>().
-                ReverseMap();
+            CreateMap<Pokemon, PokemonResponse>()
+                .ForMember(dest => dest.Categories, opt => opt.MapFrom(src => src.PokemonCategories.Select(sc => sc.Category)));
+
+        }
+
+        private void MapOwner()
+        {
+            CreateMap<Owner, OwnerResponse>()
+                .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Country));
         }
     }
 }

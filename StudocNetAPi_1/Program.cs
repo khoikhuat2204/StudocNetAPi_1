@@ -2,12 +2,20 @@ using StudocNetAPi_1;
 using StudocNetAPi_1.Data;
 using StudocNetAPi_1.Repositories;
 using StudocNetAPi_1.Services;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ContractResolver =
+            new DefaultContractResolver();
+        options.SerializerSettings.ReferenceLoopHandling =
+            ReferenceLoopHandling.Ignore;
+    });
 builder.Services.AddTransient<Seed>();
 //Add DI
 AddDI(builder.Services);

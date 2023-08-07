@@ -22,7 +22,7 @@ namespace StudocNetAPi_1.Services
 
         public async Task<ICollection<Pokemon>> GetPokemons()
         {
-            var pokemons = await _pokemonRepository.GetAll();
+            var pokemons = await _pokemonRepository.GetPokemonsWithInclude();
             return pokemons.ToList();
         }
     }
