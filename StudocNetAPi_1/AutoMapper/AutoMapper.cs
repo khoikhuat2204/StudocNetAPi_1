@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using StudocNetAPi_1.Models;
+using StudocNetAPi_1.Models.RequestModels;
 using StudocNetAPi_1.Models.ResponseModels;
 
 namespace StudocNetAPi_1.AutoMapper
@@ -35,6 +36,8 @@ namespace StudocNetAPi_1.AutoMapper
         {
             CreateMap<Owner, OwnerResponse>()
                 .ForMember(dest => dest.Country, opt => opt.MapFrom(src => src.Country));
+            CreateMap<OwnerRequest, Owner>()
+                .ReverseMap();
         }
     }
 }

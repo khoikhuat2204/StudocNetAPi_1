@@ -11,7 +11,7 @@ namespace StudocNetAPi_1.Repositories
         {
             _context = new DataContext();
         }
-        public async Task<IQueryable<T>> GetAll()
+        public IQueryable<T> GetAll()
         {
             try
             {

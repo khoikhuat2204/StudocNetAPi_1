@@ -16,6 +16,9 @@ builder.Services.AddControllers()
         options.SerializerSettings.ReferenceLoopHandling =
             ReferenceLoopHandling.Ignore;
     });
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
 builder.Services.AddTransient<Seed>();
 //Add DI
 AddDI(builder.Services);
@@ -61,5 +64,7 @@ void SeedData(IHost app)
 {
     services.AddScoped<PokemonRepository>();
     services.AddScoped<IPokemonService, PokemonService>();
-    services.AddAutoMapper(typeof(Program).Assembly);
+    services.AddScoped<OwnerRepository>();
+    services.AddScoped<IOwnerService, OwnerService>();
+    services.AddScoped<CountryRepository>();
 }
